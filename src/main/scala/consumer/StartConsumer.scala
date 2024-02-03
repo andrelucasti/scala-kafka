@@ -26,7 +26,8 @@ object StartConsumer {
     while (true){
       val records = consumer.poll(Duration.ofMillis(200))
       records.forEach{ r =>
-        println(r.value())
+        println(s"Reading from - ${r.topic()} | Partition: ${r.partition()} | Key: ${r.key()}")
+        println(s"Body: ${r.value()}")
       }
     }
   }
